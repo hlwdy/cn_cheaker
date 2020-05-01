@@ -1,8 +1,8 @@
 from spell_checker import cn_correct
 import jieba
 
-m_list=['为','的','了','呢','太','呀','很','真','是','有','也','地','给','让','请']
-bd_list=['"','"','“','”']
+m_list=['为','的','了','呢','太','呀','很','真','是','有','也','地','给','让','请','将']
+bd_list=['"','"','“','”','。','.']
 
 def cheakBD(word):
     for i in bd_list:
@@ -25,10 +25,10 @@ while(1):
             next_b=False
             continue
         if(len(res[i])<2 and i<len(res)):
-            if(cheakBD):
+            if(cheakBD(res[i])):
                 out=out+res[i]
                 continue
-            if(i<len(res)-1 and cheakM(res[i]) and cheakM(res[i+1])):
+            if(i<len(res)-1 and cheakM(res[i]) and cheakM(res[i+1]) and not cheakBD(res[i+1])):
                 out=out+cn_correct(res[i]+res[i+1])
                 next_b=True
             #elif(cheakM(res[i+1]) and len(res[i+1])>1):
