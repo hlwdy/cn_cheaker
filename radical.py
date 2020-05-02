@@ -22,6 +22,4 @@ class Radical(object):
         if word in self.dictionary:
             return self.dictionary[word]
         else:
-            return self.get_radical_from_baiduhanyu(word)
-
-    
+            return ''
