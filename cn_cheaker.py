@@ -2,7 +2,7 @@ from spell_checker import cn_correct
 import jieba
 
 m_list=['为','的','了','呢','太','呀','很','真','是','有','也','地','给','让','请','将']
-bd_list=['"','"','“','”','。','.']
+bd_list=['"','"','“','”','。','.',',','，','!','！','?','？',';','；']
 
 def cheakBD(word):
     for i in bd_list:
