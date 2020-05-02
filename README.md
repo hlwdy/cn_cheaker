@@ -18,3 +18,15 @@ A simple Chinese text error corrector.
 ## How to run it 如何运行此程序
 运行 "cn_cheaker.py"，这是主程序。
 Run "cn_cheaker.py", this is the main program.
+
+## For example 运行示例
+```
+input: 你是以个学声.学系成绩不撮
+你是一个学生.学习成绩不错
+input: 这场体育竟赛是展现同学们的风彩的时候
+这体育竞赛是展现同学们的风采的时候
+input: 济南的东天是没有风生的
+济南的冬天是没有风声的
+input: 仅天的天器怎么样
+今天的天气怎样
+```
