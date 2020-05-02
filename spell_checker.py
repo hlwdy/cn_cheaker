@@ -1,7 +1,7 @@
 import os
 import collections
 import pypinyin
-import jieba
+#import jieba
 import difflib
 from radical import Radical
 
@@ -18,7 +18,8 @@ def cn_ci(dir_path):
             with open(file_path, "rb") as f:
                 all_text += f.read().decode("utf-8")
 
-    terms = jieba.cut(all_text)
+    #terms = jieba.cut(all_text)
+    terms=all_text.split(' ')
 
     return [ci for ci in ','.join(terms).split(',') if ci not in ['', " "]]
 
