@@ -12,6 +12,6 @@ def cn_ci(dir_path):
                 terms = jieba.cut(all_text)
                 terms = [i for i in terms if(len(str(i).strip())!=0)]
                 terms = {}.fromkeys(terms).keys()
-                f.write(' '.join(terms))
+                f.write(' '.join(terms)+' ')
 
 #cn_ci("cn_texts")

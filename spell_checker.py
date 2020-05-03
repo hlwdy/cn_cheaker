@@ -70,7 +70,10 @@ def cn_correct(ci):
     for i in candidates:
         nowid=getPiny(i)
         nowbu=getBushou(i[0])
-        temp=cheaklike(nowid,tid)*0.9+cheaklike(nowbu,tbu)*0.1
+        if(nowbu==tbu):
+            temp=cheaklike(nowid,tid)*0.9+0.1
+        else:
+            temp=cheaklike(nowid,tid)*0.95
         if(temp>maxv):
             maxv=temp
             maxi=i
