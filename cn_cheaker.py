@@ -1,8 +1,9 @@
 from spell_checker import cn_correct
 import jieba
+import jieba.posseg as pseg
 
-m_list=['你','那','为','的','了','呢','太','呀','很','真','是','吗','我','有','也','地','他','她','它','给','让','请','将','这','帮','能','在']
-bd_list=['"','"','“','”','。','.',',','，','!','！','?','？',';','；','、','：',':']
+m_list=['你','那','为','了','呢','太','呀','很','真','是','吗','我','有','也','他','她','您','它','给','让','请','对','将','这','每','帮','能','在']
+bd_list=['"','"','“','”','。','.',',','，','!','！','?','？',';','；','、','：',':','《','》']
 
 def cheakBD(word):
     for i in bd_list:
@@ -21,7 +22,14 @@ def cheekEn(word):
         return True
     return False
 
-def cn_sen_correct(res):
+def de_correct(cx_q,cx_h):
+    if((cx_q=='d' or cx_q=='a') and cx_h=='v'):
+        return '地'
+    if(cx_q=='v' and cx_h=='a'):
+        return '得'
+    return '的'
+
+def cn_sen_correct(res,cx):
     out=''
     next_b=False
     for i in range(len(res)):
@@ -29,6 +37,12 @@ def cn_sen_correct(res):
             next_b=False
             continue
         if(len(res[i])<2 and i<len(res)):
+            if(res[i]=='的' or res[i]=='地' or res[i]=='得'):
+                if(i+1==len(res)):
+                    out=out+de_correct(cx[i-1],'')
+                else:
+                    out=out+de_correct(cx[i-1],cx[i+1])
+                continue
             if(cheakBD(res[i]) or res[i]==' ' or cheekEn(res[i])):
                 out=out+res[i]
                 continue
@@ -44,5 +58,6 @@ def cn_sen_correct(res):
     return out
 
 while(1):
-    res=list(jieba.cut(input('input: ')))
-    print(cn_sen_correct(res))
+    inText=input('input: ')
+    res=list(jieba.cut(inText))
+    print(cn_sen_correct(res,[x.flag for x in pseg.cut(inText)]))
