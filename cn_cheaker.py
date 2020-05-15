@@ -2,8 +2,8 @@ from spell_checker import cn_correct
 import jieba
 import jieba.posseg as pseg
 
-m_list=['你','那','为','了','呢','太','呀','很','真','是','吗','我','有','也','他','她','您','它','给','让','请','对','将','这','每','帮','能','在']
-bd_list=['"','"','“','”','。','.',',','，','!','！','?','？',';','；','、','：',':','《','》']
+m_list=['你','那','为','了','呢','太','呀','很','真','是','吗','我','们','有','也','他','她','您','它','给','让','请','对','将','这','每','帮','能','在','去','说','以','可','和','与']
+bd_list=['"','"','“','”','。','.',',','，','!','！','?','？',';','；','、','：',':','《','》',' ']
 
 def cheakBD(word):
     for i in bd_list:
@@ -59,5 +59,7 @@ def cn_sen_correct(res,cx):
 
 while(1):
     inText=input('input: ')
+    cut_out=pseg.cut(inText)
     res=list(jieba.cut(inText))
-    print(cn_sen_correct(res,[x.flag for x in pseg.cut(inText)]))
+    #res=[x.word for x in cut_out]
+    print(cn_sen_correct(res,[x.flag for x in cut_out]))
